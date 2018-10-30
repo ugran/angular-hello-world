@@ -7,20 +7,11 @@ import { CoursesService } from './courses.service';
     //<div class="courses"> ".courses"
     //<div id="courses"> "#courses"
     template: `
-        <h2>{{ title }}</h2>
-        <ul>
-            <li *ngFor="let course of courses">
-                {{ course }}
-            </li>
-        </ul>
-    `
+        {{ text | summary:10 }}`
 })
 
 export class CoursesComponent {
-    title = "List of Courses";
-    courses;
-
-    constructor(service: CoursesService) {
-        this.courses = service.getCourses();
-    }
+    text = `
+    Lorem Ipsum is simply dummy text of the print taraarararararararara
+    `
 }
