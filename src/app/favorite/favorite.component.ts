@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import {faStar} from '@fortawesome/free-solid-svg-icons';
 import {faStar as farStar} from '@fortawesome/free-regular-svg-icons';
 
@@ -9,25 +9,27 @@ import {faStar as farStar} from '@fortawesome/free-regular-svg-icons';
 })
 export class FavoriteComponent implements OnInit {
   chosenIcon;
-  @Input('is-favorite') isFavorite: boolean;
-  @Output('change') change = new EventEmitter();
-
-  constructor() { }
+  @Input('is-favorite') isSelected: boolean;
+  @Output('change') click = new EventEmitter();
 
   ngOnInit() {
-    if (this.isFavorite)
+    if (this.isSelected)
       this.chosenIcon = faStar
     else
       this.chosenIcon = farStar
   }
 
   onClick(){
-    this.isFavorite = !this.isFavorite;
-    if (this.isFavorite)
+    this.isSelected = !this.isSelected;
+    if (this.isSelected)
       this.chosenIcon = faStar
     else
       this.chosenIcon = farStar
-    this.change.emit();
+    this.click.emit({newValue: this.isSelected});
   }
 
+}
+
+export interface FavoriteChangedEventArgs {
+  newValue: boolean
 }

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { FavoriteChangedEventArgs } from './favorite/favorite.component';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-root',
@@ -6,13 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular app';
-  post = {
-    title: 'Title',
-    isFavorite: true
-  }
-
-  onFavoriteChanged() {
-    console.log("Favorite Changed");
+  task = {
+    title: 'Review applications',
+    asignee: {
+      name: 'John Smith'
+    }
   }
 }
