@@ -1,24 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'new-course-form',
   templateUrl: './new-course-form.component.html',
   styleUrls: ['./new-course-form.component.css']
 })
-export class NewCourseFormComponent implements OnInit {
-  categories = [
-    {id:1, name: 'Development'},
-    {id:2, name: 'Art'},
-    {id:3, name: 'Languages'}
-  ];
+export class NewCourseFormComponent  {
+  form;
+  // = new FormGroup({
+  //   name: new FormControl(),
+  //   contact: new FormGroup({
+  //     email: new FormControl(),
+  //     phone: new FormControl()
+  //   }),
+  //   topics: new FormArray([])
+  // });
 
-  submit (f) {
-    console.log(f);
-  }
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(fb: FormBuilder) {
+    this.form = fb.group({
+      name: ['', Validators.required],
+      contact: fb.group({
+        email: [],
+        phone: []
+      }),
+      topics: fb.array([])
+    });
   }
 
 }
